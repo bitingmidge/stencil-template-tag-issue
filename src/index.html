@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Stencil Component Starter</title>
+  <script src="/build/mycomponent.js"></script>
+  <style>
+    div {
+      margin-bottom: 10px;
+    }
+  </style>
+
+</head>
+<body>
+
+  <template-tag-issue></template-tag-issue>
+
+  <template>This is the template content inside of index.html.</template>
+
+  <div id="container_wont_work" style="background-color: yellow"></div>
+
+  <div id="container_will_work" style="background-color: cyan"></div>
+
+  <script type="text/javascript">
+    // Pass the container element to our component where's it's <template>
+    // content should get rendered
+    // THIS WILL *NOT* WORK UNTIL THE FIX-UP IS APPLIED
+    var template_tag_issue = document.querySelector('template-tag-issue');
+    var container_wont_work = document.querySelector('#container_wont_work');
+    template_tag_issue.container = container_wont_work;
+
+    // Also render the <template> content in index.html into the container
+    // THIS WILL WORK
+    var template = document.querySelector('template');
+    var container_will_work = document.querySelector('#container_will_work');
+    console.log(template)
+    container_will_work.appendChild(template.content.cloneNode(true))
+  </script>
+
+</body>
+</html>
